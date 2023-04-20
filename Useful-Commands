@@ -1,0 +1,39 @@
+# Commands
+
+# Find all configuration files in the /etc directory
+
+  - find /etc/*.conf
+
+        /etc/adduser.conf
+        /etc/ca-certificates.conf
+        /etc/debconf.conf
+        /etc/deluser.conf
+        /etc/dns2tcpd.conf
+        /etc/e2scrub.conf
+        /etc/fuse.conf
+        /etc/gai.conf
+        /etc/hdparm.conf
+        /etc/host.conf
+        /etc/idmapd.conf
+        /etc/ipsec.conf
+        /etc/kernel-img.conf
+        /etc/ld.so.conf
+        /etc/libao.conf
+        /etc/libaudit.conf
+        /etc/logrotate.conf
+        /etc/miredo.conf
+        /etc/mke2fs.conf
+        /etc/nfs.conf
+        /etc/nftables.conf
+        /etc/nikto.conf
+        /etc/nsswitch.conf
+        /etc/pam.conf
+        /etc/proxychains4.conf
+        /etc/redsocks.conf
+        /etc/request-key.conf
+        /etc/resolv.conf
+        /etc/sensors3.conf
+        /etc/smartd.conf
+        /etc/smi.conf
+        
+        
