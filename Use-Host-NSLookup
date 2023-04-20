@@ -1,0 +1,47 @@
+# host 
+simple tool to resolve a hostname quickly 
+  - host google.com
+
+  google.com has address 172.217.170.110
+  google.com has IPv6 address 2c0f:fb50:4002:801::200e
+  google.com mail is handled by 10 smtp.google.com.
+
+
+# nslookup
+Legacy name resolution tool that uses it's own resolver code
+
+  - nslookup google.com
+
+  Server:         192.168.112.1
+  Address:        192.168.112.1#53
+
+  Non-authoritative answer:
+  Name:   google.com
+  Address: 172.217.170.110
+  Name:   google.com
+  Address: 2c0f:fb50:4002:801::200e
+
+
+# dig
+Uses the operating systems 
+
+  - dig google.com
+ 
+   ; <<>> DiG 9.18.12-1-Debian <<>> google.com
+  ;; global options: +cmd
+  ;; Got answer:
+  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 9372
+  ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+  ;; OPT PSEUDOSECTION:
+  ; EDNS: version: 0, flags:; udp: 512
+  ;; QUESTION SECTION:
+  ;google.com.                    IN      A
+
+  ;; ANSWER SECTION:
+  google.com.             245     IN      A       216.58.223.142
+
+  ;; Query time: 27 msec
+  ;; SERVER: 192.168.112.1#53(192.168.112.1) (UDP)
+  ;; WHEN: Thu Apr 20 23:20:11 SAST 2023
+  ;; MSG SIZE  rcvd: 55
