@@ -1,0 +1,9 @@
+# Commands 
+
+# bind
+    - sudo apt install bind9 bind9-utils
+    - apt list bind*  
+
+# DNS
+    -  sudo systemctl enable named
+    -  sudo systemctl start named 
