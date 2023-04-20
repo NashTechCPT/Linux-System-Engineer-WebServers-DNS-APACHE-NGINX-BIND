@@ -1,0 +1,179 @@
+# dig
+  - dig redhat.com
+    # HEADER which includes the dig command version number and the global options used by dig
+    
+      ; <<>> DiG 9.18.12-1-Debian <<>> redhat.com
+      ;; global options: +cmd
+      ;; Got answer:
+      ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 58540
+      ;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+      
+      ;; OPT PSEUDOSECTION:
+      ; EDNS: version: 0, flags:; udp: 512
+
+      
+    # QUESTION SECTION which is the question sent to the DNS Server, since the default query is an address query it shows an address query
+     ;; QUESTION SECTION:
+     ;redhat.com.                    IN      A
+
+    # ANSWER SECTION which is the response from the DNS query which shows the address record  
+      ;; ANSWER SECTION:
+      redhat.com.             87      IN      A       52.200.142.250
+      redhat.com.             87      IN      A       34.235.198.240
+      
+    # AUTHORITY SECTION which displays the DNS Name Server that has the authority to respond to this query followed by stats
+      ;; Query time: 28 msec
+      ;; SERVER: 192.168.112.1#53(192.168.112.1) (UDP)
+      ;; WHEN: Thu Apr 20 23:21:44 SAST 2023
+      ;; MSG SIZE  rcvd: 71
+      
+         Only show ANSWERS:
+             dig redhat.com +nocomment +noquestion +noauthority +noadditional +nostats
+             
+                ;; global options: +cmd
+                redhat.com.             342     IN      A       52.200.142.250
+                redhat.com.             342     IN      A       34.235.198.240
+       
+         Hide Individually:
+           dig redhat.com +noall +answer
+                redhat.com.             342     IN      A       52.200.142.250
+                redhat.com.             342     IN      A       34.235.198.240  
+                
+         Query a different record (Mail Exchange Record):     
+           dig redhat.com MX +noall +answer
+                redhat.com.             600     IN      MX      10 us-smtp-inbound-1.mimecast.com.
+                redhat.com.             600     IN      MX      10 us-smtp-inbound-2.mimecast.com.
+                
+         Query name server: 
+           dig redhat.com NS +noall +answer
+                redhat.com.             3600    IN      NS      a1-68.akam.net.
+                redhat.com.             3600    IN      NS      a9-65.akam.net.
+                redhat.com.             3600    IN      NS      a28-64.akam.net.
+                redhat.com.             3600    IN      NS      a16-67.akam.net.
+                redhat.com.             3600    IN      NS      a13-66.akam.net.
+                redhat.com.             3600    IN      NS      a10-65.akam.net.
+         
+         Query all records: 
+           dig redhat.com ANY +noall +answer
+               redhat.com.             600     IN      A       52.200.142.250
+                redhat.com.             600     IN      A       34.235.198.240
+                redhat.com.             600     IN      MX      10 us-smtp-inbound-2.mimecast.com.
+                redhat.com.             600     IN      MX      10 us-smtp-inbound-1.mimecast.com.
+                redhat.com.             3600    IN      TXT     "slack-domain-verification=dPrnI9sLvqvAbQUwzvFsPXSPEU1PLODdgGxLhEUr"
+                redhat.com.             3600    IN      TXT     "google-site-verification=fkn6chapCdYNWIcpsgH0K6mkR0yo7ldeIRC7EH23yoo"
+                redhat.com.             3600    IN      TXT     "docusign=cfd355fc-11f9-4eaf-8ecf-64433ef46173"
+                redhat.com.             3600    IN      TXT     "status-page-domain-verification=hyls0f05cd87"
+                redhat.com.             3600    IN      TXT     "MS=ms88428189"
+                redhat.com.             3600    IN      TXT     "status-page-domain-verification=dfx5rbys1ts5"
+                redhat.com.             3600    IN      TXT     "MS=ms44845140"
+                redhat.com.             3600    IN      TXT     "atlassian-domain-verification=fHiTv781WbOHgzl6U1McyXa9JUSSO5B0ECvgSZzJ9+b4q8wv0Tf4iI75xdcyoC00"
+                redhat.com.             3600    IN      TXT     "miro-verification=0bc02d4257d450b9f9034363a58f88b4b904dc22"
+                redhat.com.             3600    IN      TXT     "pendo-domain-verification=01424ad4-8f69-4456-90ff-5f544ada6cec"
+                redhat.com.             3600    IN      TXT     "amazonses:ablaZDaC37yeQUcZAZjbfqRELxucC+8pBdvhFEpTSlY="
+                redhat.com.             3600    IN      TXT     "segment-site-verification=Kk3pC9UBfhioQzibTvTIhT4TFVwP4niP"
+                redhat.com.             3600    IN      TXT     "v=spf1 ip4:107.21.15.141 ip4:108.177.8.0/21 ip4:128.17.0.0/20 ip4:128.17.128.0/20 ip4:128.17.192.0/20 ip4:128.17.64.0/20 ip4:128.245.0.0/20 ip4:128.245.64.0/20 ip4:13.110.208.0/21 ip4:13.110.216.0/22 ip4:13.110.224.0/20 ip4:13.111.0.0/16 ip4:136.147.128.0" "/20 ip4:136.147.176.0/20 ip4:148.105.8.0/21 ip4:149.72.0.0/16 ip4:159.183.0.0/16 include:spf1.redhat.com -all"
+                redhat.com.             3600    IN      TXT     "docusign=c6aa79da-fde1-4b7e-8874-28eeb223ca63"
+                redhat.com.             3600    IN      TXT     "adobe-idp-site-verification=10154eb7d4abe67e9e45621e46476febbec28a97a4610d7c043c42c667aa18d4"
+                redhat.com.             3600    IN      TXT     "google-site-verification=rl_wq5rq_W7A7OSyK08d8Ta_Hf6AKP5tqtdlo4iGTvs"
+                redhat.com.             3600    IN      TXT     "google-site-verification=TaSjV4JOe2XfmL_vHFKJHkPk8sjgoLkuuTTWezDO0Pw"
+                redhat.com.             3600    IN      TXT     "apple-domain-verification=xaB3GAa9xxzrpoS4"
+                redhat.com.             3600    IN      SOA     a1-68.akam.net. noc.redhat.com. 2023042000 300 180 604800 14400
+                redhat.com.             3600    IN      CAA     0 iodef "mailto:it-cert-admin@redhat.com"
+                redhat.com.             3600    IN      CAA     0 issue "letsencrypt.org"
+                redhat.com.             3600    IN      CAA     0 issue "digicert.com"
+                redhat.com.             3600    IN      NS      a28-64.akam.net.
+                redhat.com.             3600    IN      NS      a9-65.akam.net.
+                redhat.com.             3600    IN      NS      a16-67.akam.net.
+                redhat.com.             3600    IN      NS      a10-65.akam.net.
+                redhat.com.             3600    IN      NS      a1-68.akam.net.
+                redhat.com.             3600    IN      NS      a13-66.akam.net.
+                
+          Query IP address:  
+            dig redhat.com +short             
+                52.200.142.250
+                34.235.198.240
+                
+          Reverse DNS lookup:
+            dig -x 52.200.142.250 +short
+                ec2-52-200-142-250.compute-1.amazonaws.com.
+         
+          Query a specific DNS Server (best to query our own DNS server):
+            dig @ns1.redhat.com redhat.com
+              ; <<>> DiG 9.18.12-1-Debian <<>> @ns1.redhat.com redhat.com
+              ; (1 server found)
+              ;; global options: +cmd
+              ;; Got answer:
+              ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 3731
+              ;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+              ;; OPT PSEUDOSECTION:
+              ; EDNS: version: 0, flags:; udp: 512
+              ;; QUESTION SECTION:
+              ;redhat.com.                    IN      A
+
+              ;; ANSWER SECTION:
+              redhat.com.             129     IN      A       52.200.142.250
+              redhat.com.             129     IN      A       34.235.198.240
+
+              ;; Query time: 43 msec
+              ;; SERVER: 209.132.186.218#53(ns1.redhat.com) (UDP)
+              ;; WHEN: Thu Apr 20 23:41:03 SAST 2023
+              ;; MSG SIZE  rcvd: 71
+              
+         Do a bulk DNS name query by making a text file:
+            vi dnsnames.txt
+              Press "i"
+              INSERT the following text:
+                redhat.com
+                ford.com
+                centos.com
+                
+                Save :x
+                
+                dig -f dnsnames.txt +noall +answer
+                
+                redhat.com.             52      IN      A       34.235.198.240
+                redhat.com.             52      IN      A       52.200.142.250
+                ford.com.               954     IN      A       19.12.97.37
+                ford.com.               954     IN      A       19.12.113.37
+                centos.com.             1505    IN      A       217.160.0.230
+                .                       39481   IN      NS      a.root-servers.net.
+                .                       39481   IN      NS      b.root-servers.net.
+                .                       39481   IN      NS      c.root-servers.net.
+                .                       39481   IN      NS      d.root-servers.net.
+                .                       39481   IN      NS      e.root-servers.net.
+                .                       39481   IN      NS      f.root-servers.net.
+                .                       39481   IN      NS      g.root-servers.net.
+                .                       39481   IN      NS      h.root-servers.net.
+                .                       39481   IN      NS      i.root-servers.net.
+                .                       39481   IN      NS      j.root-servers.net.
+                .                       39481   IN      NS      k.root-servers.net.
+                .                       39481   IN      NS      l.root-servers.net.
+                .                       39481   IN      NS      m.root-servers.net.
+                .                       33089   IN      NS      g.root-servers.net.
+                .                       33089   IN      NS      k.root-servers.net.
+                .                       33089   IN      NS      f.root-servers.net.
+                .                       33089   IN      NS      a.root-servers.net.
+                .                       33089   IN      NS      b.root-servers.net.
+                .                       33089   IN      NS      d.root-servers.net.
+                .                       33089   IN      NS      i.root-servers.net.
+                .                       33089   IN      NS      e.root-servers.net.
+                .                       33089   IN      NS      l.root-servers.net.
+                .                       33089   IN      NS      h.root-servers.net.
+                .                       33089   IN      NS      j.root-servers.net.
+                .                       33089   IN      NS      m.root-servers.net.
+                .                       33089   IN      NS      c.root-servers.net.
+                
+                
+                make a .digrc file in home directory and add "+noall +answer" and they will be automatically appended to the dig query
+
+
+
+
+           
+           
+                
+
+                
+
+      
