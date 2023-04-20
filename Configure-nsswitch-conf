@@ -1,0 +1,76 @@
+# Nameserver Switch 
+# /etc/nsswitch.conf
+  The Nameserver Switch or nsswitch file is used by applications to determine sources to get name service information from. 
+  Not only for domain name resolution order but rather for multiple categories 
+  Each category of information is identified by a database name
+  
+  The first column of the file is the database name then the remaining columns specify the order in which to look up the data. 
+  
+ The following databases are understood: 
+
+  - aliases for mail aliases
+  - 'ethers' for ethernet numbers
+  - groups for groups of users
+  - hosts for hostnames and numbers
+  - initgroup for supplementary group lists
+  - netgroup for network groups
+  - networks for network names and numbers
+  - passwd for passwords
+  - protocols for network protocols
+  - publickey for secret keys used by NFS (Network File System) and NIS+ (Network Information Service)
+  - rpc for remote procedure call numbers
+  - services for network services 
+  - shadow for shadow passwords
+  
+# Hosts Database Options
+
+ for common situations:
+    Specifies to resolve host names used in the local name resolution file, /etc/hosts
+   - files
+ 
+   Instruct the client to resolve via DNS: 
+   - dns
+ 
+     - files and -dns will try them in order left to right
+         for instance, it's common to use host, colon, space:
+         - hosts: files dns
+           This way it will consult the etc host file first and try to resolve DNS second
+           This allows us to override DNS with a local etc host entry. 
+           
+        # status
+             After each option we can have an option status and an action inside square brackets:
+             - success
+               No errors occurred 
+             - notfound
+               lookup succeeded but the entry was not found
+             - unavail
+               the service is permanently unavailable
+             - tryagain
+               service is temporarily unavailable
+
+               Status Example: 
+                 hosts: dns [!UNAVAIL=return] files
+                 
+         # actions
+           - return
+             returns the result right away
+           - continue
+             moves on to the next method in the list
+           - merge
+             allows the system to move onto the next method after finding a result and then merges the results
+             
+             Negated status with action using the "!"
+             Example: 
+                 hosts: dns [!UNAVAIL=return] files
+             
+           
+ 
+ for hosting resolution:
+   - nis
+   
+   - nisplus 
+ 
+
+ 
+    
+  
