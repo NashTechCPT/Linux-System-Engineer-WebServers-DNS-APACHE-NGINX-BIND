@@ -50,6 +50,5 @@ Client-Side Resolve Configuration
         /etc/resolv.conf automatically. 
         
  
-# /etc/nsswitch.conf
-  The purpose of resolv.conf is to provide a list of Global DNS servers for our client to query when resolving DNS names.   
+ 
   
