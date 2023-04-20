@@ -1,0 +1,55 @@
+Client-Side Resolve Configuration 
+
+
+# /etc/resolv.conf
+ 
+ Column1: 
+  The purpose of resolv.conf is to provide a list of Global DNS servers for our client to query when resolving DNS names.
+  
+  - Search 
+    localnet.com ford.com apple.com 
+      if no search line default to local domain name: yourlocaldomainname.localnet.com
+    
+  - Domain
+    append the domain to the end of a short name: 
+      domain otherdomain.com
+        yourlocaldomainname.otherdomain.com
+    
+  - nameserver
+    followed by a DNS Server IP address to query
+      nameserver 4.2.2.2
+      you can have up to 3 nameserver lines and the client will query them in the order they're listed: 
+        nameserver 8.8.8.8
+        nameserver 192.168.1.21
+   
+  - sortlist
+    Allows us to sort IP addresses in certain networks: 
+      sortlist 130.155.160.0/255.255.240.0
+        allows up to 10 network and subnet pairs
+        
+  - options
+    Lets us set DNS client options such as querying the nameservers round robin to spread the load
+    A timeout
+    A number of times the client will query the DNS server before giving up
+      options rotate
+      options timeout:5
+      options attempts:2
+      
+      /etc/sysconfig/network-scripts-ifcfg-eth0
+      BOOTPROTO=dhcp
+      DEFROUTE=yes
+      NAME=enp0s3
+      ONBOOT=yes
+
+      If you want to set DNS Nameservers per network interface, you can do so by adding them to the interface specific network configuration files.     
+       The global configuration file is /etc/resolve.conf
+        DNS1=4.2.2.2
+        DNS1=8.8.8.8
+        
+        If you set your DNS servers in the interface specific configuration file and you also set PEERDNS=yes then those DNS serves will get copied to
+        /etc/resolv.conf automatically. 
+        
+ 
+# /etc/nsswitch.conf
+  The purpose of resolv.conf is to provide a list of Global DNS servers for our client to query when resolving DNS names.   
+  
