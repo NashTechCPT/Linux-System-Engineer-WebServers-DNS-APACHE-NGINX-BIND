@@ -50,6 +50,12 @@ Step 11: Copy the /etc/hosts file from VM2 to VM1 in order to have local name re
   If promted to continue for authentication, type "yes" without quotes. 
 
   If a permission denied error is received, open a Terminal on VM1 and execute the following command: 
+  
+ # systemctl status ssh.socket
+ # if status disabled then 
+ # systemctl enable ssh.socket
+ # AND
+ # systemctl start ssh.socket
  # sudo chmod 777 /etc/hosts (this will allow read, write and execute to the file on vm1)
     If a permission denied error is still received, execute the following commands: 
  # sudo vi /etc/ssh/ssh_config
