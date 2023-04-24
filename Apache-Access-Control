@@ -1,0 +1,73 @@
+# Apache Access Control
+
+- Allow access to User:
+# Require user <name or UID> - access is granted to the user based on the user name or UID
+    <Directory />
+        AllowOverride none
+        Require user user1
+    </Directory>    
+
+-  Deny Access to User
+# Not require user <name or UID> - deny user access based on the user name or UID
+    <Directory />
+        AllowOverride none
+        Not require user user1
+    </Directory>  
+    
+- Allow/Deny group Access    
+# Require group <name or GID>
+# Not require group <name or GID>
+    <Directory />
+        AllowOverride none
+        Require group admin
+        Not require group users
+    </Directory>  
+
+-  Allow/Deny Access to Network
+# Require valid users <Access only granted to valid Users>   
+# Require ip <network IP>
+# Not require ip <network IP>
+    <Directory />
+        AllowOverride none
+        Require ip 10.2
+        Require ip 10.1.0.0/255.255.0.0
+        Not require 192.168.0
+    </Directory>
+
+- to allow or deny based on hostname 
+# Require host <hostname>    
+# Not require host <hostname>
+    <Directory />
+        AllowOverride none
+        Require host nashtech1.localnet.com
+        Not require host .net
+    </Directory>
+    
+- To Allow all access
+# Require all granted
+
+- To Deny all access
+# Require all denied
+
+- To Allow access to hosts on the local network
+# Require local
+
+- Grouping Access Control 
+    <Directory />
+      <RequireAll>
+        Require user user1
+        Require group admin
+      </RequireAll>
+    </Directory>
+
+- Apache Access Control Containers:
+# RequireAll
+# RequireAny
+# RequireNone
+
+- Access Control Conditions
+    <If "%{HTTP_USER_AGENT} == 'BadBot'">
+      Require all denied
+    </If>  
+    
+    Require expr %{HTTP_USER_AGENT} != 'BadBot'
