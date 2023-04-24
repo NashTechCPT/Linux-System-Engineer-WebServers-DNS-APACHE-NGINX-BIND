@@ -3,9 +3,19 @@
 # Dependencies: 
    sudo apt install -y bind9 bind9utils bind9-doc dnsutils
    cd /etc/bind - contains all bind configuration files
+   
+         Step 2) Configure Bind 9 (DNS Server)
+            Once all the packages have been installed, we will move into the configuration part. All configuration files for BIND are located in folder ‘/etc/bind’.
+
+            One of the important configuration file for bind is “/etc/bind/named.conf.options“, from this file we can set the followings parameters:
+
+            Allow Query to your dns from your private network (As the name suggests only the systems from your private network can query dns sever for name to ip translation and vice-versa)
+            Allow recursive query
+            Specify the DNS port ( 53)
+            Frwarders (DNS query will be forwarded to the forwarders when your local DNS server is unable to resolve query)
 
    fileS includes Global options plus zone and include statements:
-  All statements start with a left curly bracket "{" a right curly bracket "}" and a semicolon ";"
+      All statements start with a left curly bracket "{" a right curly bracket "}" and a semicolon ";"
       
       sudo less /etc/bind/named.conf
       
