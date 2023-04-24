@@ -1,0 +1,32 @@
+# apachectl - controls Apache
+
+# htpasswd - creates passwords for basic auth
+
+# httpd - server binary, used to get the Apache version as well as test configuration file for syntax errors.
+
+# /etc/httpd - directory of Apache configuration files
+
+# /etc/httpd/conf/httpd.conf - main configuration file
+
+# /etc/httpd/conf.d/ - directory of additional config files, which contains another 3 configuration files:
+   - autoindex.conf  - configures directory indexing
+   - userdir.conf    - configures access to user directories 
+   - welcome.conf    - configures welcome page when no content is present
+  
+# /etc/httpd/conf.modules.d - configuration for modules
+
+There are also links to three directories in /etc/httpd which are:
+
+  # /var/log/httpd - directory where Apache logs are stored
+  # /usr/lib64/httpd/modules - additional APache modules
+  # /run/httpd - runtime information
+  
+Apache Start ORDER  
+
+When Apache runs it processes the files in the following directories in the order listed below:
+
+# /usr/lib64/httpd/modules
+
+# /etc/httpd/conf/httpd.conf
+
+# /etc/httpd/conf.d
