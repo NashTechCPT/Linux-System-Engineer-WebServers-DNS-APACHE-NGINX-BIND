@@ -12,6 +12,45 @@ SELINUX=disabled
 Reboot system
 
 # man SElinux
+# 
+# Create man pages for httpd_selinux:
+    # sudo sepolicy manpage -a -p /usr/local/man/man8.mandb
+    # man httpd_selinux
+    
+    httpd_selinux(8)                                                      SELinux Policy httpd                                                      httpd_selinux(8)
+
+NAME
+       httpd_selinux - Security Enhanced Linux Policy for the httpd processes
+
+DESCRIPTION
+       Security-Enhanced Linux secures the httpd processes via flexible mandatory access control.
+
+       The  httpd  processes  execute  with  the httpd_t SELinux type. You can check if you have these processes running by executing the ps command with the -Z
+       qualifier.
+
+       For example:
+
+       ps -eZ | grep httpd_t
+
+ENTRYPOINTS
+       The httpd_t SELinux type can be entered via the httpd_exec_t file type.
+
+       The default entrypoint paths for the httpd_t domain are the following:
+
+       /usr/sbin/php.*-fpm,   /usr/bin/httpd(.worker)?,   /usr/bin/apache(2)?,    /usr/bin/apache(2)?ctl,    /usr/sbin/httpd(.worker)?,    /usr/sbin/apache(2)?,
+       /usr/sbin/apache(2)?ctl,    /usr/sbin/php-fpm[^/]+,    /usr/bin/apache-ssl(2)?,    /usr/lib/apache-ssl/.+,   /usr/sbin/apache-ssl(2)?,   /usr/bin/wigwam,
+       /usr/sbin/nginx, /usr/bin/ssi-cgi, /usr/sbin/wigwam, /usr/bin/cherokee,  /usr/bin/hiawatha,  /usr/bin/lighttpd,  /usr/sbin/cherokee,  /usr/sbin/hiawatha,
+       /usr/sbin/lighttpd,     /usr/bin/cgi-wrapper,     /usr/bin/httpd.event,     /usr/sbin/cgi-wrapper,     /usr/sbin/httpd.event,     /usr/bin/mongrel_rails,
+       /usr/share/jetty/bin/jetty.sh
+
+PROCESS TYPES
+       SELinux defines process types (domains) for each process running on the system
+
+       You can see the context of a process using the -Z option to ps
+
+       Policy governs the access confined processes have to files.  SELinux httpd policy is very flexible allowing users to setup their httpd  processes  in  as
+       secure a method as possible.
+
 
 # getsebool -a | grep httpd
 
