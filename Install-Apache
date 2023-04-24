@@ -1,5 +1,6 @@
 # sudo apt install -y httpd
 # sudo apt install apache2
+# sudo apt install elinks
 
 # sudo apt install httpd-manual
 
