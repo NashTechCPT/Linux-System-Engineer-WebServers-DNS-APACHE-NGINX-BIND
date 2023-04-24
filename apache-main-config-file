@@ -1,0 +1,59 @@
+# /etc/httpd/conf/httpd.conf
+
+##
+# This is the main Apache HTTP server configuration file. It contains the
+# configuration directives that give the server its instructions.
+# See <URL:http://httpd.apache.org/docs/2.4/> for detailed information
+# In particular, see
+# <URL:http:/httpd.apache.org/docs/2.4/mod/directives.html>
+# for a discussion of each configration directive.
+#
+# Do NOT simply read the instructions in here without understanding
+# what they do. They're here only as hints or reminders. If you are unsure
+# consult the online docs. You have been warned.
+
+
+#   Directive
+# - Directives are key/value pairs:
+#    #Listen 12.34.56.78:80
+#    Listen 8
+    
+# - Comment - start with a # symbol
+
+# - Directives inside a Container
+#   <Directory />
+        AllowOverride none
+        Require all denied
+    </Directory>     
+    
+    
+# Apache Important Directives
+
+  # Listen - IP address and ports to listen to
+  # ServerRoot - base directory for the server installation
+  # ServerAdmin - server email address
+  # ServerName - hostname and port for server identity
+  # User - user that the Apache server runs as
+  # group - group that the Apache server runs as
+  # AddHandler - maps the filename extension to a handler, such as the PHP Processor for PHP files
+  # Alias - maps URLs to filesystem locations
+  # DirectoryIndex - pattern for default index file, sets the file to look for when the client hasn't specified
+    eg. if a client loads localnet.com the directory index directive will give it localnet.com/index.html if configured that way
+  # DocumentRoot - directory where the site files are stored
+  # LogFormat - sets the format of the log
+  # LogLevel - how much logging is done
+  # CustomLog - the filename and format of the log
+  # ErrorLog - location where the server logs errors
+  # ErrorLogFormat - Format of the ErrorLog
+  # Options - which features are available in a directory directive
+  # ExecCGI - allows execution of CGI scripts
+  # FollowSymLinks - follow symbolic links in the filesystem
+  # Includes - allows server-side includes
+  # IncludesNOEXEC - allow server-side includes but does not allow the exec command
+  # Indexes - returns a list of files in a directory if no index
+  # MultiViews - fakes file extensions based on media type
+  # All - turns on all options except Multiviews, multiviews has to be specified individually
+  # None - turns all options off
+  # AllowOverride - which types of directives are allowed to override globals (These directives would be placed in a .htaccess file) (Only allowed in Directory sections)
+  # AllowOverrideList - individual directives that are allowed to override globals (When the AllowOverride and AllowOverrideList are set to none, then the .htaccess files are ignored
+  # Require - allows or denies access by user, group, host, network, or domain
