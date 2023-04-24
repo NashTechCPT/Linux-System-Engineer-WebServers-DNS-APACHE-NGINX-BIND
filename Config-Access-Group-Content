@@ -1,0 +1,68 @@
+# cd /var/www/html
+# sudo mkdir privategroup
+# sudo vi /etc/apache2/apache2.conf 
+  Move to the end of the file and place cursor on the on the first line of the directive below and press "y2", 
+  then press "p": (Shortcut keys to copy directive), press "i" then append "group" to "private":
+  <Directory "var/www/html/private">
+        AllowOverride AuthConfig
+  </Directory> 
+  <Directory "var/www/html/privategroup">
+        AllowOverride AuthConfig
+  </Directory> 
+  
+   ┌──(nashtech㉿kalihost1)-[/var/www/html]
+#  └─$ sudo apachectl configtest  
+    Syntax OK
+    
+# sudo vi privategroup/.htaccess
+  AuthType Basic
+  AuthName "Enter your group credentials"
+  AuthGroupFile "/etc/apache2/.groupdb"
+  AuthUserFile "/etc/apache2/.grouppassdb"
+  Require group webgroup
+  
+# sudo vi privategroup/index.html
+  Private group index file
+
+┌──(nashtech㉿kalihost1)-[/var/www/html]
+└─$ sudo chown -R www-data:www-data privategroup
+                                                                                 
+┌──(nashtech㉿kalihost1)-[/var/www/html]
+└─$ sudo chmod -R 770 privategroup              
+                                                                                 
+┌──(nashtech㉿kalihost1)-[/var/www/html]
+└─$ cd /etc/apache2/
+                                                                                 
+┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ sudo vi .groupdb   
+    webgroup: user1 user2
+    
+┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ sudo htpasswd -c .grouppassdb user1
+New password: 
+Re-type new password: 
+Adding password for user user1
+
+┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ sudo htpasswd .grouppassdb 
+New password: 
+Re-type new password: 
+Adding password for user user2
+
+┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ sudo chown www-data:www-data .group*        
+                                                                                 
+┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ sudo chmod 660 .group* 
+
+Error received /var/www/html/privategroup/.htaccess: Invalid command 'AuthGroupFile'
+Command below resolved:
+
+# sudo a2enmod authz_groupfile
+
+
+    
+    
+    
+
+  
