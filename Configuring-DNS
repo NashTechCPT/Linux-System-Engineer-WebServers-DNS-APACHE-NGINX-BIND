@@ -2,6 +2,9 @@
 
 # Dependencies: 
    sudo apt install -y bind9 bind9utils bind9-doc dnsutils
+   
+# Path to Zone file - /etc/bind/db.local
+   
    cd /etc/bind - contains all bind configuration files
    
          Step 2) Configure Bind 9 (DNS Server)
