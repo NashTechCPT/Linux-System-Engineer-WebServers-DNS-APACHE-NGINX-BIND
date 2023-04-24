@@ -30,4 +30,6 @@ Syntax OK
     Private Index file
     
 ┌──(nashtech㉿kalihost1)-[/var/www/html]
-└─$ sudo chown -R apache:apache private
+└─$ sudo chown -R nashtech:nashtech private
+    sudo chmod -R 770 private 
+    
