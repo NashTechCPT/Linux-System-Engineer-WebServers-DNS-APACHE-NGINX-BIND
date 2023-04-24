@@ -67,4 +67,20 @@ Syntax OK
     drwxr-xr-x.   2 root     root     4.0K Apr 20 14:31 sites-available
     drwxr-xr-x.   2 root     root     4.0K Mar  5 05:07 sites-enabled
     -rw-rw----.   1 nashtech nashtech   44 Apr 24 11:39 .userdb
+    
+    
+    
+    ──(nashtech㉿kalihost1)-[~]
+    └─$ ps aux | egrep '(apache|httpd)'
+    root       14895  0.0  0.5 203988 21616 ?        Ss   07:57   0:01 /usr/sbin/apac
+    root       79266  0.0  0.1  10060  4776 pts/4    S+   10:03   0:00 sudo tail -f /
+    root       79283  0.0  0.0  10060   528 pts/5    Ss   10:03   0:00 sudo tail -f /
+    root       79284  0.0  0.0   5496   876 pts/5    S+   10:03   0:00 tail -f /var/l
+    www-data  130249  0.0  0.3 204916 12712 ?        S    11:43   0:00 /usr/sbin/apac
+    www-data  130250  0.0  0.3 204644 12080 ?        S    11:43   0:00 /usr/sbin/apac
+    www-data  130251  0.0  0.2 204596 10836 ?        S    11:43   0:00 /usr/sbin/apac
+    www-data  130252  0.0  0.2 204596 10836 ?        S    11:43   0:00 /usr/sbin/apac
+    www-data  130253  0.0  0.2 204596 10836 ?        S    11:43   0:00 /usr/sbin/apac
+    www-data  130964  0.0  0.2 204596 10836 ?        S    11:44   0:00 /usr/sbin/apac
+    nashtech  142121  0.0  0.0   6332  2140 pts/6    S+   12:06   0:00 grep -E --colo
 
