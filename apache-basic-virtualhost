@@ -1,0 +1,46 @@
+┌──(nashtech㉿kalihost1)-[~]
+└─$ apachectl -S             
+VirtualHost configuration:
+*:80                   is a NameVirtualHost
+         default server vhost1.localnet.com (/etc/apache2/conf-enabled/vhost1.conf:1)
+         port 80 namevhost vhost1.localnet.com (/etc/apache2/conf-enabled/vhost1.conf:1)
+                 alias www.vhost1.localnet.com
+         port 80 namevhost kalihost1.localnet.com (/etc/apache2/sites-enabled/000-default.conf:1)
+ServerRoot: "/etc/apache2"
+Main DocumentRoot: "/var/www/html"
+Main ErrorLog: "/var/log/apache2/error.log"
+Mutex mpm-accept: using_defaults
+Mutex watchdog-callback: using_defaults
+Mutex default: dir="/var/run/apache2/" mechanism=default 
+PidFile: "/var/run/apache2/apache2.pid"
+Define: DUMP_VHOSTS
+Define: DUMP_RUN_CFG
+User: name="www-data" id=33 not_used
+Group: name="www-data" id=33 not_used
+
+##################################################################
+
+┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─ /etc/apache2/conf-enabled/vhost1.conf 
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@vhost1.localnet.com
+    DocumentRoot "/var/www/html/vhost1.com/"
+    ServerName vhost1.localnet.com
+    ServerAlias www.vhost1.localnet.com
+    ErrorLog "/var/log/apache2/vhost1.com-error_log"
+    CustomLog "/var/log/apache2/vhhost1.com-access_log" common
+</VirtualHost>
+
+# sudo mkdir /var/www/html/vhost1.com
+# sudo vi /var/www/html/vhost1.com/index.html
+         Vhost1.com virtual host index file
+         
+# sudo apachectl configtest
+
+# sudo httpd -D DUMP_VHOSTS
+
+# sudo vi /etc/hosts
+  
+  
+  
