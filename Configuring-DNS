@@ -2,6 +2,7 @@
 
 # Dependencies: 
    sudo apt install -y bind9 bind9utils bind9-doc dnsutils
+   cd /etc/bind - contains all bind configuration files
 
    fileS includes Global options plus zone and include statements:
   All statements start with a left curly bracket "{" a right curly bracket "}" and a semicolon ";"
