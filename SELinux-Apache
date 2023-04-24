@@ -1,0 +1,70 @@
+# sudo apt install selinux-utils
+# sudo apt install policycoreutils
+# sudo apt install selinux-basics
+
+# sudo apt install policycoreutils selinux-utils selinux-basics
+# sudo selinux-activate
+# sudo selinux-config-enforcing
+
+# /etc/selinux/config 
+SELINUX=enforcing
+SELINUX=disabled
+Reboot system
+
+# man SElinux
+
+# getsebool -a | grep httpd
+
+allow_httpd_anon_write --> off                                         - Allows Apache to write to any directory with the type of public_content_rw_t
+allow_httpd_apcupsd_cgi_script_anon_write --> off                      -            
+allow_httpd_awstats_script_anon_write --> off
+allow_httpd_collectd_script_anon_write --> off
+allow_httpd_cvs_script_anon_write --> off
+allow_httpd_git_script_anon_write --> off
+allow_httpd_lightsquid_script_anon_write --> off
+allow_httpd_man2html_script_anon_write --> off
+allow_httpd_mediawiki_script_anon_write --> off
+allow_httpd_mod_auth_pam --> off
+allow_httpd_mojomojo_script_anon_write --> off
+allow_httpd_munin_script_anon_write --> off
+allow_httpd_nagios_script_anon_write --> off
+allow_httpd_nutups_cgi_script_anon_write --> off
+allow_httpd_prewikka_script_anon_write --> off
+allow_httpd_smokeping_cgi_script_anon_write --> off
+allow_httpd_squid_script_anon_write --> off
+allow_httpd_sys_script_anon_write --> off
+allow_httpd_unconfined_script_anon_write --> off
+allow_httpd_user_script_anon_write --> off
+allow_httpd_webalizer_script_anon_write --> off
+httpd_builtin_scripting --> off
+httpd_can_check_spam --> off                                            - Has Apache check for Spam
+httpd_can_network_connect --> off
+httpd_can_network_connect_cobbler --> off
+httpd_can_network_connect_db --> off
+httpd_can_network_connect_ldap --> off
+httpd_can_network_connect_memcache --> off
+httpd_can_network_connect_zabbix --> off
+httpd_can_network_relay --> off                                         - To get Apache to act as a network relay
+httpd_can_sendmail --> off                                              - To get Apache to send mail
+httpd_dbus_avahi --> off
+httpd_enable_cgi --> off
+httpd_enable_ftp_server --> off
+httpd_enable_homedirs --> off
+httpd_execmem --> off
+httpd_gpg_anon_write --> off
+httpd_graceful_shutdown --> off
+httpd_manage_ipa --> off
+httpd_mod_auth_ntlm_winbind --> off
+httpd_read_user_content --> off
+httpd_setrlimit --> off
+httpd_ssi_exec --> off
+httpd_tmp_exec --> off
+httpd_tty_comm --> off
+httpd_unified --> off
+httpd_use_cifs --> off
+httpd_use_fusefs --> off
+httpd_use_gpg --> off
+httpd_use_nfs --> off
+
+
+
