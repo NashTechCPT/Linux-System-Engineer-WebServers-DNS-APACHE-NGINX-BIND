@@ -1,5 +1,9 @@
 # Commands
 
+Kill any running program instantly:
+# pkill <programname>
+# pkill firefox
+
 # Find all configuration files in the /etc directory
 
   - find /etc/*.conf
