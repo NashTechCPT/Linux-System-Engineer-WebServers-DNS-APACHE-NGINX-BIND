@@ -29,7 +29,42 @@ Syntax OK
 # sudo vi private/index.html
     Private Index file
     
-┌──(nashtech㉿kalihost1)-[/var/www/html]
-└─$ sudo chown -R nashtech:nashtech private
-    sudo chmod -R 770 private 
+          ┌──(nashtech㉿kalihost1)-[/var/www/html]
+          └─$ sudo nano /etc/apache2/envvars         
+                                                                                 
+          ┌──(nashtech㉿kalihost1)-[/var/www/html]
+          └─$ sudo chown -R www-data:www-data private
+                                                                                 
+         ┌──(nashtech㉿kalihost1)-[/var/www/html]
+         └─$ sudo chmod -R 770 private
+         
+    ┌──(nashtech㉿kalihost1)-[/etc/apache2]
+    └─$ sudo htpasswd -c .userdb user1                      
+      New password: 
+      Re-type new password: 
+      Adding password for user user1
+                                                                                                                                                                      
+      ┌──(nashtech㉿kalihost1)-[/etc/apache2]
+      └─$ sudo chown www-data:www-data .userdb
+        $ sudo chmod 660 .userdb 
+          sudo systemctl reload apache2   
+          firefox --private-window kalihost1.localnet.com/private
     
+    
+    ┌──(nashtech㉿kalihost1)-[/etc/apache2]
+    └─$ ls -lah
+    total 104K
+    drwxr-xr-x.   8 root     root     4.0K Apr 24 11:39 .
+    drwxr-xr-x. 179 root     root      12K Apr 24 05:43 ..
+    -rw-r--r--.   1 root     root     7.1K Apr 24 10:12 apache2.conf
+    drwxr-xr-x.   2 root     root     4.0K Apr 20 14:31 conf-available
+    drwxr-xr-x.   2 root     root     4.0K Mar  5 05:07 conf-enabled
+    -rw-r--r--.   1 root     root     1.8K Jun  9  2022 envvars
+    -rw-r--r--.   1 root     root      31K Jun  9  2022 magic
+    drwxr-xr-x.   2 root     root      16K Apr 20 14:31 mods-available
+    drwxr-xr-x.   2 root     root     4.0K Mar  5 05:07 mods-enabled
+    -rw-r--r--.   1 root     root      274 Jan 18 05:00 ports.conf
+    drwxr-xr-x.   2 root     root     4.0K Apr 20 14:31 sites-available
+    drwxr-xr-x.   2 root     root     4.0K Mar  5 05:07 sites-enabled
+    -rw-rw----.   1 nashtech nashtech   44 Apr 24 11:39 .userdb
+
