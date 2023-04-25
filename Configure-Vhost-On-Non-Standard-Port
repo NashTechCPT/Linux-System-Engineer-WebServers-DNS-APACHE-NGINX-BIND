@@ -43,6 +43,41 @@ If you change the port an dadd more ports here, you will likely also have to cha
   libsemanage.add_user: user sddm not in password file
   
 # ┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ sudo semanage port --list | grep ^http_port_t
+http_port_t                    tcp      8085, 80, 443, 488, 8008, 8009, 8443, 8448
+ 
+# ┌──(nashtech㉿kalihost1)-[/etc/apache2]
+  └─$ sudo firewall-cmd --permanent --add-port 8085/tcp
+    sudo: firewall-cmd: command not found
+        └─$ sudo apt install firewalld  
+
+# ──(nashtech㉿kalihost1)-[/etc/apache2]
+ └─$ sudo systemctl enable firewalld
+       Created symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service → /lib/systemd/system/firewalld.service.
+        Created symlink /etc/systemd/system/multi-user.target.wants/firewalld.service → /lib/systemd/system/firewalld.service.
+                                                                                                                                                                      
+# ┌──(nashtech㉿kalihost1)-[/etc/apache2]
+  └─$ sudo systemctl start firewalld 
+                                                                                                                                                                      
+# ┌──(nashtech㉿kalihost1)-[/etc/apache2]
+  └─$ sudo firewall-cmd --permanent --add-port 8085/tcp
+ success                                                                                                                                                                     
+                                                                                                                                                                      
+┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ sudo firewall-cmd --reload                       
+success
+                                                                                                                                                                      
+┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ sudo apachectl configtest 
+Syntax OK
+
+# sudo vi /etc/hosts  #add the following:
+   192.168.112.155 vhost2.localnet.com vhost2
+   192.168.112.155 www.vhost2.localnet.com
+
+##################### additional commands ##############################  
+
+# ┌──(nashtech㉿kalihost1)-[/etc/apache2]
   └─$ sudo semanage port --list    
             SELinux Port Type              Proto    Port Number
 
