@@ -9,10 +9,79 @@
    DocumentRoot "/var/www/html/vhost1.com/"
    ServerName vhost1.localnet.com
    ServerAlias www.vhost1.localnet.com
-   ErrorLog "/var/log/apache2/vhost1.com-error_log"                                                         // ErrorLog ${APACHE_LOG_DIR}/error-vhost1.log                                          
-   CustomLog "/var/log/apache2/vhost1.com-access_log" common                                               // CustomLog ${APACHE_LOG_DIR}/access-vhost1.log combined                                                                                                                                                                            
+   ErrorLog ${APACHE_LOG_DIR}/error-vhost1.log                                          
+   CustomLog ${APACHE_LOG_DIR}/access-vhost1.log combined                                                                                                                                                                            
   </virtualHost>
    
+# sudo mkdir /var/www/html/vhost1.com 
+# sudo vi /var/www/html/vhost1.com/index.html
+  Vhost1.com virtual host index file
+   
+# ┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ sudo apachectl configtest                  
+Syntax OK
+  
+#└─$ sudo apachectl -D DUMP_VHOSTS
+VirtualHost configuration:
+*:80                   kalihost1.localnet.com (/etc/apache2/sites-enabled/000-default.conf:1)
+
+# TO MANAGE NAME RESOLUTION, you could add a zone file to your DNS server, for this we will edit /etc/hosts
+# sudo vi /etc/hosts
+  press yy
+  press p twice
+  on line 3 change domain name and alias to:
+    vhost1.localnet.com vhost1
+      - 192.168.1.88 vhost1.localnet.com vhost1
+  on line 4 change the domain name and delete the alias
+      - www.vhost1.localnet.com
+      
+# ┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ ping vhost1     
+PING vhost1.localnet.com (192.168.112.155) 56(84) bytes of data.
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=1 ttl=64 time=0.036 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=2 ttl=64 time=0.041 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=3 ttl=64 time=0.040 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=4 ttl=64 time=0.039 ms
+
+--- vhost1.localnet.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3056ms
+rtt min/avg/max/mdev = 0.036/0.039/0.041/0.002 ms      
+
+┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ ping vhost1.localnet.com
+PING vhost1.localnet.com (192.168.112.155) 56(84) bytes of data.
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=1 ttl=64 time=0.034 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=2 ttl=64 time=0.049 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=3 ttl=64 time=0.043 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=4 ttl=64 time=0.054 ms
+
+┌──(nashtech㉿kalihost1)-[/etc/apache2]
+└─$ ping www.vhost1.localnet.com
+PING www.vhost1.localnet.com (192.168.112.155) 56(84) bytes of data.
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=1 ttl=64 time=0.033 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=2 ttl=64 time=0.039 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=3 ttl=64 time=0.041 ms
+
+--- www.vhost1.localnet.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2046ms
+rtt min/avg/max/mdev = 0.033/0.037/0.041/0.003 ms
+
+# sudo systemctl reload apache2
+
+# To check logs 
+    -   sudo tail -f /var/log/apache2/error.log.1
+
+# Start vhost1
+    - firefox www.vhost1.localnet.com
+    
+    
+    
+    
+    
+    
+    
+    ###### extra info ################
+
 # a2ensite vhost1.conf (Creates a link in the sites-available directory)
 # systemctl reload apache2
   Vhost should be active
