@@ -1,0 +1,63 @@
+
+# List Compiled Modules: 
+  -   apache2 -l
+  
+# Show all loaded Modules:
+  -   apache2ctl -M
+
+# Currently installed Modules (not active): 
+  -   a2enmod 
+ ┌──(nashtech㉿kalihost1)-[/etc/apache2]
+  └─$ a2enmod   
+    Your choices are: access_compat actions alias allowmethods asis auth_basic auth_digest auth_form authn_anon authn_core authn_dbd authn_dbm authn_file authn_socache authnz_fcgi authnz_ldap authz_core authz_dbd authz_dbm authz_groupfile authz_host authz_owner authz_user autoindex brotli buffer cache cache_disk cache_socache cern_meta cgi cgid charset_lite data dav dav_fs dav_lock dbd deflate dialup dir dump_io echo env expires ext_filter file_cache filter headers heartbeat heartmonitor http2 ident imagemap include info lbmethod_bybusyness lbmethod_byrequests lbmethod_bytraffic lbmethod_heartbeat ldap log_debug log_forensic lua macro md mime mime_magic mpm_event mpm_prefork mpm_worker negotiation php8.1 php8.2 proxy proxy_ajp proxy_balancer proxy_connect proxy_express proxy_fcgi proxy_fdpass proxy_ftp proxy_hcheck proxy_html proxy_http proxy_http2 proxy_scgi proxy_uwsgi proxy_wstunnel ratelimit reflector remoteip reqtimeout request rewrite sed session session_cookie session_crypto session_dbd setenvif slotmem_plain slotmem_shm socache_dbm socache_memcache socache_redis socache_shmcb speling ssl status substitute suexec unique_id userdir usertrack vhost_alias xml2enc
+    Which module(s) do you want to enable (wildcards ok)?
+    
+    <enter module name to enable> press enter
+    
+ # Add modules not listed: 
+  -   apt search libapache2-mod | more  
+  
+  ──(nashtech㉿kalihost1)-[/etc/apache2]
+  └─$ apt search libapache2-mod | more 
+
+          WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+          Sorting...
+          Full Text Search...
+          libapache-mod-jk-doc/kali-rolling 1:1.2.48-2 all
+            Documentation of libapache2-mod-jk package
+
+          libapache2-mod-apparmor/kali-rolling 3.0.8-3 amd64
+            changehat AppArmor library as an Apache module
+
+          libapache2-mod-auth-cas/kali-rolling 1.2-1+b2 amd64
+            CAS authentication module for Apache2
+
+          libapache2-mod-auth-gssapi/kali-rolling 1.6.4-3 amd64
+            GSSAPI Authentication module for Apache2
+
+          libapache2-mod-auth-mellon/kali-rolling 0.18.1-1 amd64
+            SAML 2.0 authentication module for Apache
+
+          libapache2-mod-auth-openidc/kali-rolling 2.4.12.3-1 amd64
+            OpenID Connect Relying Party implementation for Apache
+
+          libapache2-mod-auth-plain/kali-rolling 2.0.53 amd64
+            Module for Apache2 which provides plaintext authentication
+
+          libapache2-mod-auth-pubtkt/kali-rolling 0.13-1+b1 amd64
+            key-based single-sign-on authentication module for Apache
+
+          libapache2-mod-auth-tkt/kali-rolling 2.3.99~b1-1 amd64
+            lightweight single-sign-on authentication module for Apache
+
+          libapache2-mod-authn-sasl/kali-rolling 1.2-2+b1 amd64
+            SASL authentication backend provider for Apache
+          --More--
+          
+# Install specified module:          
+    -   sudo apt install libapache2-mod-python   
+    -   a2enmod 
+    -   sudo systemctl restart apache2
+    
+    
