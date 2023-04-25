@@ -4,6 +4,8 @@ https://httpd.apache.org/docs/current/mod/mod_ssl.html
 # sudo a2enmod ssl 
 # openssl version  
 # sudo systemctl restart apache2
+ - less /etc/apache2/mods-enable/ssl.conf
+ 
 # apachectl -M
 
 # sudo gzip -d  /usr/share/doc/apache2/README.Debian.gz
