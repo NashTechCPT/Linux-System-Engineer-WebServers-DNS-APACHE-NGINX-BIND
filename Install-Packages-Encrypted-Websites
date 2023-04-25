@@ -2,6 +2,59 @@ https://httpd.apache.org/docs/current/ssl/
 https://httpd.apache.org/docs/current/mod/mod_ssl.html
 
 # man openssl
+# cd /etc/ssl/certs/
+  ┌──(nashtech㉿kalihost1)-[/etc/ssl/certs]
+    # Generate Private Key:
+  └─$ sudo openssl genpkey -algorithm rsa -pkeyopt rsa_keygen_bits:2048 -out secure.localnet.com.key
+    # Generate CSR:
+    $ sudo openssl req -new -key secure.localnet.com.key -out secure.localnet.com.csr  
+    
+            You are about to be asked to enter information that will be incorporated
+      into your certificate request.
+      What you are about to enter is what is called a Distinguished Name or a DN.
+      There are quite a few fields but you can leave some blank
+      For some fields there will be a default value,
+      If you enter '.', the field will be left blank.
+      -----
+      Country Name (2 letter code) [AU]:SA
+      State or Province Name (full name) [Some-State]:WC
+      Locality Name (eg, city) []:Cape Town
+      Organization Name (eg, company) [Internet Widgits Pty Ltd]:localnet
+      Organizational Unit Name (eg, section) []:localnet
+      Common Name (e.g. server FQDN or YOUR name) []:secure.localnet.com
+      Email Address []:info@secure.localnet.com
+
+      Please enter the following 'extra' attributes
+      to be sent with your certificate request
+      A challenge password []:
+      An optional company name []:
+
+      ┌──(nashtech㉿kalihost1)-[/etc/ssl/certs]
+      └─$ ls | grep secure 
+      secure.localnet.com.csr
+      secure.localnet.com.key
+      
+      ┌──(nashtech㉿kalihost1)-[/etc/ssl/certs] 
+      # sign own certificate - self signed certificate:
+      sudo openssl x509 -req -days 120 -signkey secure.localnet.com.key -in secure.localnet.com.csr -out secure.localnet.com.crt
+
+      ┌──(nashtech㉿kalihost1)-[/etc/ssl/certs]
+      └─$ sudo openssl x509 -req -days 120 -signkey secure.localnet.com.key -in secure.localnet.com.csr -out secure.localnet.com.crt
+      Certificate request self-signature ok
+      subject=C = SA, ST = WC, L = Cape Town, O = localnet, OU = localnet, CN = secure.localnet.com, emailAddress = info@secure.localnet.com
+
+      ┌──(nashtech㉿kalihost1)-[/etc/ssl/certs]
+      └─$ ls | grep secure                                                                                                          
+      secure.localnet.com.crt
+      secure.localnet.com.csr
+      secure.localnet.com.key
+      
+      # change the permissions on the key and move it to a private directory:
+      - sudo chmod 600 secure.localnet.com.key
+      - sudo mv secure.localnet.com.key ../private/
+      - sudo systemctl restart apache2
+      - sudo openssl s_client -connect localhost:443 -state
+
 
 # standard commands, cypher commands, message digest commands:
 
@@ -537,3 +590,42 @@ Order of options may be important!  See the documentation.
     packagers to interact with the web server for both, build and installation
     time. Please refer to the PACKAGING file in the apache2 package for
     detailed information.
+    
+    
+# ┌──(nashtech㉿kalihost1)-[/etc/ssl/certs]
+└─$ cd /etc/ssl/certs/    
+    ┌──(nashtech㉿kalihost1)-[/etc/ssl/certs]
+└─$ ls -lah    
+total 632K
+drwxr-xr-x. 3 root root  20K Apr 20 14:33  .
+drwxr-xr-x. 4 root root 4.0K Apr 20 14:29  ..
+lrwxrwxrwx. 1 root root   23 Mar  5 05:03  002c0b4f.0 -> GlobalSign_Root_R46.pem
+lrwxrwxrwx. 1 root root   45 Mar  5 05:03  02265526.0 -> Entrust_Root_Certification_Authority_-_G2.pem
+lrwxrwxrwx. 1 root root   27 Mar  5 05:03  062cdee6.0 -> GlobalSign_Root_CA_-_R3.pem
+lrwxrwxrwx. 1 root root   25 Mar  5 05:03  064e0aa9.0 -> QuoVadis_Root_CA_2_G3.pem
+lrwxrwxrwx. 1 root root   50 Mar  5 05:03  06dc52d5.0 -> SSL.com_EV_Root_Certification_Authority_RSA_R2.pem
+lrwxrwxrwx. 1 root root   34 Apr 20 14:29  08063a00.0 -> Security_Communication_RootCA3.pem
+lrwxrwxrwx. 1 root root   54 Mar  5 05:03  09789157.0 -> Starfield_Services_Root_Certificate_Authority_-_G2.pem
+lrwxrwxrwx. 1 root root   15 Mar  5 05:03  0a775a30.0 -> GTS_Root_R3.pem
+lrwxrwxrwx. 1 root root   16 Mar  5 05:03  0b1b94ef.0 -> CFCA_EV_ROOT.pem
+lrwxrwxrwx. 1 root root   16 Apr 20 14:29  0b9bc432.0 -> ISRG_Root_X2.pem
+lrwxrwxrwx. 1 root root   44 Mar  5 05:03  0bf05006.0 -> SSL.com_Root_Certification_Authority_ECC.pem
+lrwxrwxrwx. 1 root root   32 Mar  5 05:03  0f5dc4f3.0 -> UCA_Extended_Validation_Root.pem
+lrwxrwxrwx. 1 root root   26 Mar  5 05:03  0f6fa695.0 -> GDCA_TrustAUTH_R5_ROOT.pem
+lrwxrwxrwx. 1 root root   15 Mar  5 05:03  1001acf7.0 -> GTS_Root_R1.pem
+lrwxrwxrwx. 1 root root   46 Mar  5 05:03  106f3e4d.0 -> Entrust_Root_Certification_Authority_-_EC1.pem
+lrwxrwxrwx. 1 root root   27 Mar  5 05:03  14bc7599.0 -> emSign_ECC_Root_CA_-_G3.pem
+lrwxrwxrwx. 1 root root   23 Mar  5 05:03  18856ac4.0 -> SecureSign_RootCA11.pem
+lrwxrwxrwx. 1 root root   31 Mar  5 05:03  1d3472b9.0 -> GlobalSign_ECC_Root_CA_-_R5.pem
+lrwxrwxrwx. 1 root root   37 Mar  5 05:03  1e08bfd1.0 -> IdenTrust_Public_Sector_Root_CA_1.pem
+lrwxrwxrwx. 1 root root   32 Mar  5 05:03  1e09d511.0 -> T-TeleSec_GlobalRoot_Class_2.pem
+lrwxrwxrwx. 1 root root   38 Mar  5 05:03  244b5494.0 -> DigiCert_High_Assurance_EV_Root_CA.pem
+lrwxrwxrwx. 1 root root   23 Mar  5 05:03  2923b3f9.0 -> emSign_Root_CA_-_G1.pem
+lrwxrwxrwx. 1 root root   20 Mar  5 05:03  2ae6433e.0 -> CA_Disig_Root_R2.pem
+lrwxrwxrwx. 1 root root   26 Mar  5 05:03  2b349938.0 -> AffirmTrust_Commercial.pem
+lrwxrwxrwx. 1 root root   59 Mar  5 05:03  32888f65.0 -> Hellenic_Academic_and_Research_Institutions_RootCA_2015.pem
+lrwxrwxrwx. 1 root root   27 Mar  5 05:03  3513523f.0 -> DigiCert_Global_Root_CA.pem
+lrwxrwxrwx. 1 root root   61 Mar  5 05:03  3bde41ac.0 -> Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem
+lrwxrwxrwx. 1 root root   63 Apr 20 14:29  3bde41ac.1 -> Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068_2.pem
+
+    
