@@ -1,5 +1,8 @@
 # Commands
 
+To read README.gz files without extracting them:
+# zless 
+
 Kill any running program instantly:
 # pkill <programname>
 # pkill firefox
