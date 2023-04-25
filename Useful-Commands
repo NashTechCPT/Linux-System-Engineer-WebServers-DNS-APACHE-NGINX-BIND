@@ -2,6 +2,8 @@
 
 To read README.gz files without extracting them:
 # zless 
+  zless /usr/share/doc/apache2/README.Debian.gz
+
 
 Kill any running program instantly:
 # pkill <programname>
