@@ -74,6 +74,44 @@ Syntax OK
 # sudo vi /etc/hosts  #add the following:
    192.168.112.155 vhost2.localnet.com vhost2
    192.168.112.155 www.vhost2.localnet.com
+   
+   ┌──(nashtech㉿kalihost1)-[~]
+└─$ sudo vi /etc/hosts                         
+                                                                                                                                                                      
+┌──(nashtech㉿kalihost1)-[~]
+└─$ ping vhost2   
+PING vhost2.localnet.com (192.168.112.155) 56(84) bytes of data.
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=1 ttl=64 time=0.178 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=2 ttl=64 time=0.045 ms
+^C
+--- vhost2.localnet.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1020ms
+rtt min/avg/max/mdev = 0.045/0.111/0.178/0.066 ms
+                                                                                                                                                                      
+┌──(nashtech㉿kalihost1)-[~]
+└─$ ping vhost2.localnet.com
+PING vhost2.localnet.com (192.168.112.155) 56(84) bytes of data.
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=1 ttl=64 time=0.033 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=2 ttl=64 time=0.045 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=3 ttl=64 time=0.044 ms
+^C
+--- vhost2.localnet.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2038ms
+rtt min/avg/max/mdev = 0.033/0.040/0.045/0.005 ms
+                                                                                                                                                                      
+┌──(nashtech㉿kalihost1)-[~]
+└─$ ping www.vhost2.localnet.com
+PING www.vhost2.localnet.com (192.168.112.155) 56(84) bytes of data.
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=1 ttl=64 time=0.034 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=2 ttl=64 time=0.043 ms
+64 bytes from kalihost1.localnet.com (192.168.112.155): icmp_seq=3 ttl=64 time=0.041 ms
+^C
+--- www.vhost2.localnet.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2029ms
+rtt min/avg/max/mdev = 0.034/0.039/0.043/0.003 ms
+
+# restart apache service
+
 
 ##################### additional commands ##############################  
 
