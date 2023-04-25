@@ -1,7 +1,32 @@
 # Virtual Hosts Configuration files can be found at the following path:
-
 # /etc/apache2/sites-available/000-default.conf
-  
+
+# sudo cp Ex_Files_RHCE_DNS_Apache_BIND/Exercise\ Files/Ch06/etc/httpd/conf.d/vhost1.conf /etc/apache2/sites-available/ 
+
+# less /etc/apache2/sites-available/vhost1.conf
+  <VirtualHost *:80>
+   ServerAdmin webmaster@vhost1.com
+   DocumentRoot "/var/www/html/vhost1.com/"
+   ServerName vhost1.localnet.com
+   ServerAlias www.vhost1.localnet.com
+   ErrorLog "/var/log/apache2/vhost1.com-error_log"                                                         // ErrorLog ${APACHE_LOG_DIR}/error-vhost1.log                                          
+   CustomLog "/var/log/apache2/vhost1.com-access_log" common                                               // CustomLog ${APACHE_LOG_DIR}/access-vhost1.log combined                                                                                                                                                                            
+  </virtualHost>
+   
+# a2ensite vhost1.conf (Creates a link in the sites-available directory)
+# systemctl reload apache2
+  Vhost should be active
+  Alternatively
+      # ln -s ./sites-available/vhost1.conf ./sites-enabled/vhost1.conf (creates a symbolic link from sites available to sites enabled) 
+      
+      Otherhost:
+# cp ./sites-available/otherhost.conf  ./sites-available/otherhost.conf
+# mkdir /var/www/html/otherhost
+# nano ./sites-available/otherhost.conf 
+   
+   
+   
+   # /etc/apache2/sites-available/000-default.conf
    VirtualHost *:80>
         # The ServerName directive sets the request scheme, hostname and port that
         # the server uses to identify itself. This is used when creating                                                             
