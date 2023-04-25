@@ -54,6 +54,33 @@ rc4-40            seed              seed-cbc          seed-cfb
 seed-ecb          seed-ofb          sm4-cbc           sm4-cfb           
 sm4-ctr           sm4-ecb           sm4-ofb
 
+──(nashtech㉿kalihost1)-[~]
+└─$ openssl genpkey -help
+Usage: genpkey [options]
+
+General options:
+ -help               Display this summary
+ -engine val         Use engine, possibly a hardware device
+ -paramfile infile   Parameters file
+ -algorithm val      The public key algorithm
+ -quiet              Do not output status while generating keys
+ -pkeyopt val        Set the public key algorithm option as opt:value
+ -config infile      Load a configuration file (this may load modules)
+
+Output options:
+ -out outfile        Output file
+ -outform PEM|DER    output format (DER or PEM)
+ -pass val           Output file pass phrase source
+ -genparam           Generate parameters, not key
+ -text               Print the in text
+ -*                  Cipher to use to encrypt the key
+
+Provider options:
+ -provider-path val  Provider load path (must be before 'provider' argument if required)
+ -provider val       Provider to load (can be specified multiple times)
+ -propquery val      Property query used when fetching algorithms
+Order of options may be important!  See the documentation.
+
 
 # sudo a2enmod ssl 
 # openssl version  
