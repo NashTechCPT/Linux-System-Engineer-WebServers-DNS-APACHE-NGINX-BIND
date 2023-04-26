@@ -1,0 +1,20 @@
+# Common Gateway Interface (CGI)
+  Used to create HTML Content
+  
+  Scripts are written in C, Python, Ruby, Pearl
+  
+  # Apache Web server uses the ScriptAlias directive CGI scripts location
+  # Selinux limits running CGI scripts 
+  # Script Directories need a special security context
+  # Scripts run as the Apache user
+  
+ # CGI scripts common uses:
+ 
+ - Gather input from the user
+ - Query or update databases
+ - Email
+ - Run system commands
+ 
+ 
+ 
+  
